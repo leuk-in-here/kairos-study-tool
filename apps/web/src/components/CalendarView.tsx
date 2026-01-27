@@ -16,7 +16,7 @@ import { useCalendarStore } from '../stores/useCalendarStore';
 import { useTaskStore } from '../stores/useTaskStore';
 import { useSettingsStore } from '../stores/useSettingsStore';
 import clsx from 'clsx';
-import type { CalendarEvent, Task } from '@studyos/core';
+
 
 export const CalendarView: React.FC = () => {
     const { events, fetchEvents, addEvent } = useCalendarStore();

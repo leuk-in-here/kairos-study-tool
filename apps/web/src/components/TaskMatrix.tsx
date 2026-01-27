@@ -10,14 +10,11 @@ import {
     useSensor,
     useSensors,
     DragOverlay,
-    defaultDropAnimationSideEffects,
     type DragStartEvent,
-    type DragOverEvent,
     type DragEndEvent,
     useDroppable,
 } from '@dnd-kit/core';
 import {
-    arrayMove,
     SortableContext,
     sortableKeyboardCoordinates,
     verticalListSortingStrategy,
@@ -141,7 +138,6 @@ const ContextMenu: React.FC<{
     const moveTask = useTaskStore((state) => state.moveTask);
     const updateTask = useTaskStore((state) => state.updateTask);
     const contextMenuRef = useRef<HTMLDivElement>(null);
-    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -250,7 +246,7 @@ export const TaskMatrix: React.FC = () => {
         setActiveId(event.active.id as string);
     };
 
-    const handleDragOver = (event: DragOverEvent) => {
+    const handleDragOver = () => {
         // Optional: Add visual feedback logic here if needed beyond default sortable
     };
 

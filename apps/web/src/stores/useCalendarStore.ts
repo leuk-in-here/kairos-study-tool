@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { type CalendarEvent, type Task } from '@studyos/core';
-import { calendarRepository, taskRepository } from '../lib/storage';
+import { type CalendarEvent } from '@studyos/core';
+import { calendarRepository } from '../lib/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 interface CalendarState {

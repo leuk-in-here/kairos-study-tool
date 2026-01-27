@@ -40,19 +40,20 @@ export const AnalyticsDashboard: React.FC = () => {
                         startDate={new Date(today.getFullYear(), today.getMonth() - 11, today.getDate())}
                         endDate={today}
                         values={heatmapData}
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        titleForValue={(value: { date: string, count: number, details: any } | null) => {
+                        titleForValue={(value) => {
                             if (!value) return '';
-                            const { tasksCompleted, flashcardsNew, flashcardsReviewed } = value.details;
-                            return `Date: ${value.date}\nTasks: ${tasksCompleted}\nNew Cards: ${flashcardsNew}\nReviewed: ${flashcardsReviewed}`;
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const v = value as unknown as { date: string, count: number, details: any };
+                            const { tasksCompleted, flashcardsNew, flashcardsReviewed } = v.details;
+                            return `Date: ${v.date}\nTasks: ${tasksCompleted}\nNew Cards: ${flashcardsNew}\nReviewed: ${flashcardsReviewed}`;
                         }}
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        classForValue={(value: { count: number } | null) => {
+                        classForValue={(value) => {
                             if (!value) {
                                 return 'color-empty';
                             }
                             // Simple scale 1-4
-                            let scale = value.count;
+                            const v = value as unknown as { count: number };
+                            let scale = v.count;
                             if (scale > 4) scale = 4;
                             return `color-scale-${scale}`;
                         }}

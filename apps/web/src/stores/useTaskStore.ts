@@ -71,7 +71,6 @@ export const useTaskStore = create<TaskState>((set, get) => ({
         if (taskIndex === -1) return;
 
         const task = { ...allTasks[taskIndex] };
-        const oldQuadrant = task.quadrant;
 
         // Update task properties
         task.quadrant = newQuadrant;

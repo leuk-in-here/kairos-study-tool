@@ -27,7 +27,7 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
 
         // Improve: Sort logs by date? core logic assumes sort or set handling.
         // Let's sort just in case.
-        logs.sort((a, b) => a.timestamp - b.timestamp);
+        logs.sort((a: ActivityLog, b: ActivityLog) => a.timestamp - b.timestamp);
 
         const { currentStreak, longestStreak } = calculateStreak(logs);
         const heatmapData = aggregateHeatmapData(logs);
@@ -48,7 +48,7 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
 
         // Refresh local state without full refetch if possible, or just append
         const state = get();
-        const newLogs = [...state.logs, log].sort((a, b) => a.timestamp - b.timestamp);
+        const newLogs = [...state.logs, log].sort((a: ActivityLog, b: ActivityLog) => a.timestamp - b.timestamp);
 
         const { currentStreak, longestStreak } = calculateStreak(newLogs);
         const heatmapData = aggregateHeatmapData(newLogs);

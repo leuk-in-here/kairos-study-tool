@@ -248,7 +248,7 @@ export const FlashcardManager: React.FC = () => {
                     <div className="text-2xl font-medium mb-8 text-primary overflow-y-auto max-h-[300px] w-full prose prose-invert prose-headings:my-2 prose-p:my-1 text-center flex flex-col items-center">
                         {store.currentReviewCard.type === CardType.CLOZE ? (
                             <div className="leading-relaxed">
-                                {store.currentReviewCard.front.split(/({{c\d+::.*?}})/g).map((part, i) => {
+                                {store.currentReviewCard.front.split(/({{c\d+::.*?}})/g).map((part: string, i: number) => {
                                     const match = part.match(/{{c(\d+)::(.*?)}}/);
                                     if (match) {
                                         const index = parseInt(match[1]);
@@ -337,7 +337,7 @@ export const FlashcardManager: React.FC = () => {
                         <div className="w-full mt-8">
                             {store.currentReviewCard.type === CardType.MCQ ? (
                                 <div className="grid grid-cols-1 gap-3 max-w-md mx-auto">
-                                    {store.currentReviewCard.options?.map((opt, idx) => (
+                                    {store.currentReviewCard.options?.map((opt: string, idx: number) => (
                                         <button
                                             key={idx}
                                             onClick={() => setShowBack(true)}
