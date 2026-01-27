@@ -11,6 +11,7 @@ import { Clock } from './components/Clock';
 import { PomodoroTimer } from './components/PomodoroTimer';
 import { useTaskStore } from './stores/useTaskStore';
 import { useAnalyticsStore } from './stores/useAnalyticsStore';
+import { usePomodoroStore } from './stores/usePomodoroStore';
 import { useNoteStore } from './stores/useNoteStore';
 import { useFlashcardStore } from './stores/useFlashcardStore';
 import { useThemeStore } from './stores/useThemeStore';
@@ -24,6 +25,7 @@ function MainApp() {
   const [view, setView] = useState<'dashboard' | 'tasks' | 'calendar' | 'notes' | 'flashcards' | 'settings'>('dashboard');
   const tasks = useTaskStore((state) => state.tasks);
   const { currentStreak, fetchAnalytics } = useAnalyticsStore();
+  const { tick } = usePomodoroStore();
 
   // Fetch data and logic
   useEffect(() => {
@@ -31,7 +33,13 @@ function MainApp() {
     useTaskStore.getState().fetchTasks();
     useNoteStore.getState().fetchNotes();
     useFlashcardStore.getState().fetchDecks();
-  }, [fetchAnalytics]);
+
+    // Global Timer Interval
+    const interval = setInterval(() => {
+      tick();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [fetchAnalytics, tick]);
 
   // Apply Theme
   const { theme, fontSize } = useThemeStore();

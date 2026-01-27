@@ -5,14 +5,9 @@ import clsx from 'clsx';
 // Wait, I don't recall installing lucide-react. I should use simple SVGs or text to be safe in MVP.
 
 export const PomodoroTimer: React.FC = () => {
-    const { timeLeft, isActive, mode, startTimer, pauseTimer, resetTimer, setMode, tick } = usePomodoroStore();
+    const { timeLeft, isActive, mode, startTimer, pauseTimer, resetTimer, setMode } = usePomodoroStore();
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            tick();
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [tick]);
+
 
     // Request notification permission
     useEffect(() => {
