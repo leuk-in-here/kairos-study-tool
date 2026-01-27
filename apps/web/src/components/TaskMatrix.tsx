@@ -212,7 +212,12 @@ export const TaskMatrix: React.FC = () => {
     const [contextMenu, setContextMenu] = useState<{ position: { x: number; y: number }; task: Task } | null>(null);
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(PointerSensor, { // Use PointerSensor effectively for both mouse and touch if configured right, or add TouchSensor explicitly.
+            // PointerSensor with constraint is usually better for scrolling.
+            activationConstraint: {
+                distance: 8,
+            },
+        }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         })
