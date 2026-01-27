@@ -15,6 +15,7 @@ import { usePomodoroStore } from './stores/usePomodoroStore';
 import { useNoteStore } from './stores/useNoteStore';
 import { useFlashcardStore } from './stores/useFlashcardStore';
 import { useThemeStore } from './stores/useThemeStore';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import clsx from 'clsx';
 
 import { CalendarView } from './components/CalendarView';
@@ -183,7 +184,11 @@ function App() {
     return <LockScreen onUnlock={() => setIsUnlocked(true)} />;
   }
 
-  return <MainApp />;
+  return (
+    <ErrorBoundary>
+      <MainApp />
+    </ErrorBoundary>
+  );
 }
 
 export default App;
