@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Default (Night) */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #1f2937;
+  /* gray-800 */
+  --bg-tertiary: #374151;
+  /* gray-700 */
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  /* gray-400 */
+  --accent-primary: #3b82f6;
+  /* blue-500 */
+  --border-color: #374151;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme='day'] {
+  --bg-primary: #f3f4f6;
+  /* gray-100 */
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e5e7eb;
+  /* gray-200 */
+  --text-primary: #111827;
+  /* gray-900 */
+  --text-secondary: #4b5563;
+  /* gray-600 */
+  --accent-primary: #2563eb;
+  /* blue-600 */
+  --border-color: #e5e7eb;
+  color-scheme: light;
+}
+
+[data-theme='contrast'] {
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-tertiary: #ffffff;
+  --text-primary: #ffff00;
+  /* Yellow text */
+  --text-secondary: #00ff00;
+  /* Green text */
+  --accent-primary: #00ffff;
+  /* Cyan accent */
+  --border-color: #ffffff;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* TinyMDE Overrides */
+.tiny-mde-toolbar {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.tiny-mde-content {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Force TinyMDE internal divs to respect theme */
+.tiny-mde-content div,
+.tiny-mde-content p,
+.tiny-mde-content span,
+.tiny-mde-content div[contenteditable] {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+/* Ensure buttons in toolbar are visible/themed */
+.tiny-mde-toolbar button {
+  color: var(--text-primary) !important;
+  background-color: transparent;
+}
+
+.tiny-mde-toolbar button:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.tiny-mde-toolbar .active {
+  background-color: var(--accent-primary) !important;
+  color: white !important;
+}
+
+/* Scrollbar styling for editor */
+.tiny-mde-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tiny-mde-content::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.tiny-mde-content::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.tiny-mde-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
