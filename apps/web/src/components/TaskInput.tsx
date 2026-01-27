@@ -20,7 +20,7 @@ export const TaskInput: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 p-4 bg-secondary rounded-lg shadow-md border border-border">
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
                 <input
                     type="text"
                     value={title}
@@ -28,18 +28,20 @@ export const TaskInput: React.FC = () => {
                     placeholder="What needs to be done?"
                     className="flex-1 p-3 bg-tertiary text-primary rounded border border-border focus:border-accent focus:outline-none placeholder-primary-muted"
                 />
-                <input
-                    type="datetime-local"
-                    value={reminderDate}
-                    onChange={(e) => setReminderDate(e.target.value)}
-                    className="p-3 bg-tertiary text-primary rounded border border-border focus:border-accent focus:outline-none text-sm"
-                />
-                <button
-                    type="submit"
-                    className="px-6 py-2 bg-accent text-white rounded hover:bg-blue-600 transition font-medium shadow-sm"
-                >
-                    Add
-                </button>
+                <div className="flex gap-2">
+                    <input
+                        type="datetime-local"
+                        value={reminderDate}
+                        onChange={(e) => setReminderDate(e.target.value)}
+                        className="flex-1 md:flex-none p-3 bg-tertiary text-primary rounded border border-border focus:border-accent focus:outline-none text-sm"
+                    />
+                    <button
+                        type="submit"
+                        className="flex-1 md:flex-none px-6 py-2 bg-accent text-white rounded hover:bg-blue-600 transition font-medium shadow-sm"
+                    >
+                        Add
+                    </button>
+                </div>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-primary-muted">
                 <label className="flex items-center gap-1 cursor-pointer hover:text-primary transition">
