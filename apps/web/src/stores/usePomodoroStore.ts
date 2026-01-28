@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { playFocusEndSound, playBreakEndSound } from '../lib/sound';
 
 export type PomodoroMode = 'FOCUS' | 'SHORT_BREAK' | 'LONG_BREAK';
 
@@ -53,8 +54,10 @@ export const usePomodoroStore = create<PomodoroState>()(
                         set({ totalSessions: totalSessions + 1 });
                         // Notify?
                         new Notification("Pomodoro Complete!", { body: "Time for a break." });
+                        playFocusEndSound();
                     } else {
                         new Notification("Break Over!", { body: "Ready to focus?" });
+                        playBreakEndSound();
                     }
                 }
             },
